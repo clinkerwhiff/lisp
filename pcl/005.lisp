@@ -2,8 +2,8 @@
 
 (defvar *db* nil)
 
-(defun make-city (name country)
-    (list :name name :country country))
+(defun make-city (name country rating)
+    (list :name name :country country :rating rating))
 
 (defun prompt-read (prompt)
     (format t "~a: " prompt)
@@ -13,7 +13,8 @@
 (defun prompt-for-city ()
     (make-city
         (prompt-read "Name")
-        (prompt-read "Country")))
+        (prompt-read "Country")
+        (or (parse-integer (prompt-read "Rating") :junk-allowed t) 0)))
 
 (defun add-city (city)
     (push city *db*))
